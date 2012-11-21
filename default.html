@@ -10,7 +10,24 @@
 </head>
 <body>
 
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+    <a href="#koModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
+    <a href="#" id="nomodal" role="button" class="btn">No modal</a>
+    <a href="#" id="yesmodal" role="button" class="btn">Yes modal</a>
+
+    <div id="koModal" data-bind="isModal: isModal, modalFade: true, modalAriaLabelId: 'H1', modalOptions: { show: false }">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="H1">KO Modal header</h3>
+        </div>
+        <div class="modal-body">
+            <p>KO body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
 
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
@@ -26,4 +43,25 @@
         </div>
     </div>
 </body>
+    <script>
+
+        var vm = {
+            isModal: ko.observable(true)
+        };
+
+        ko.applyBindings(vm);
+
+        $("#nomodal").click(function () {
+
+            vm.isModal(false);
+
+        });
+
+        $("#yesmodal").click(function () {
+
+            vm.isModal(true);
+
+        });
+
+    </script>
 </html>
