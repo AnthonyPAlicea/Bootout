@@ -13,6 +13,7 @@
     <a href="#" id="disablemodal" role="button" class="btn">Disable/Enable modal</a>
     <a href="#" id="fademodal" role="button" class="btn">Fade modal</a>
     <a href="#" id="showmodal" role="button" class="btn">Show modal</a>
+    <a href="#" id="iconswap" role="button" class="btn">Icon swap</a>
 
     <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOptions: { show: false }">
         <div class="modal-header">
@@ -28,13 +29,17 @@
         </div>
     </div>
 
+    <br /><br />
+    <i data-bind="bootstrapIcon: icon"></i>
+
 </body>
     <script>
 
         var vm = {
             disableModal: ko.observable(false),
             fadeModal: ko.observable(true),
-            showModal: ko.observable(false)
+            showModal: ko.observable(false),
+            icon: ko.observable("ok")
         };
 
         ko.applyBindings(vm);
@@ -49,6 +54,10 @@
 
         $("#showmodal").click(
            function () { vm.showModal(!vm.showModal()); }
+           );
+
+        $("#iconswap").click(
+           function () { vm.icon("remove"); }
            );
 
     </script>
