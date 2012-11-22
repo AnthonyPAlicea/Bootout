@@ -9,8 +9,13 @@
 */
 
 
-/* Modals */
-ko.bindingHandlers.isModal = {
+/* 
+* Modal Bindings
+*/
+
+/* modalSetup - Adds classes and attributes for a modal element. */
+/* note this is only an initializer, does not track updates */
+ko.bindingHandlers.modalSetup = {
 
     init: function (element, valueAccessor, allBindingsAccessor) {
 
@@ -29,9 +34,23 @@ ko.bindingHandlers.isModal = {
 
             // modal css classes
             $(element).addClass("modal").addClass("hide").modal(options);
-            if (allBindings.modalFade === true) {
-                $(element).addClass("fade");
-            }
+        }
+    }
+}
+
+/* modalFade - should modal fade in and out */
+ko.bindingHandlers.modalFade = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).addClass("fade");
+        }
+        else {
+            $(element).removeClass("fade");
         }
     },
 
@@ -40,13 +59,75 @@ ko.bindingHandlers.isModal = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if (valueUnwrapped === false) {
-            $(element).on('show', function (e) {
-                return e.preventDefault(); // stops modal from being shown
-            })
+        if (valueUnwrapped === true) {
+            $(element).addClass("fade");
         }
         else {
-            $(element).off('show'); // let modal be shown
+            $(element).removeClass("fade");
+        }
+    }
+}
+
+/* modalDisable - should modal be allowed to be activated */
+ko.bindingHandlers.modalDisable = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).on('show', function (e) {
+                return e.preventDefault();
+            });
+        }
+        else {
+            $(element).off('show');
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).on('show', function (e) {
+                return e.preventDefault();
+            });
+        }
+        else {
+            $(element).off('show');
+        }
+    }
+}
+
+/* modalShow - show or hide the modal */
+ko.bindingHandlers.modalShow = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).modal("show");
+        }
+        else {
+            $(element).modal("hide");
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).modal("show");
+        }
+        else {
+            $(element).modal("hide");
         }
     }
 }

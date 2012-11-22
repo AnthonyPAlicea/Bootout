@@ -10,58 +10,46 @@
 </head>
 <body>
 
-    <a href="#koModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+    <a href="#" id="disablemodal" role="button" class="btn">Disable/Enable modal</a>
+    <a href="#" id="fademodal" role="button" class="btn">Fade modal</a>
+    <a href="#" id="showmodal" role="button" class="btn">Show modal</a>
 
-    <a href="#" id="nomodal" role="button" class="btn">No modal</a>
-    <a href="#" id="yesmodal" role="button" class="btn">Yes modal</a>
-
-    <div id="koModal" data-bind="isModal: isModal, modalFade: true, modalAriaLabelId: 'H1', modalOptions: { show: false }">
+    <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOptions: { show: false }">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
             <h3 id="H1">KO Modal header</h3>
         </div>
         <div class="modal-body">
             <p>KO body…</p>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Save changes</button>
+            <button class="btn" aria-hidden="true" data-bind="click: function() { showModal(false); }">Close</button>
+            <button class="btn btn-primary" data-bind="click: function() { showModal(false); }">Save changes</button>
         </div>
     </div>
 
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Modal header</h3>
-        </div>
-        <div class="modal-body">
-            <p>One fine body…</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
 </body>
     <script>
 
         var vm = {
-            isModal: ko.observable(true)
+            disableModal: ko.observable(false),
+            fadeModal: ko.observable(true),
+            showModal: ko.observable(false)
         };
 
         ko.applyBindings(vm);
 
-        $("#nomodal").click(function () {
+        $("#disablemodal").click(
+            function () { vm.disableModal(!vm.disableModal()); }
+            );
 
-            vm.isModal(false);
+        $("#fademodal").click(
+           function () { vm.fadeModal(!vm.fadeModal()); }
+           );
 
-        });
-
-        $("#yesmodal").click(function () {
-
-            vm.isModal(true);
-
-        });
+        $("#showmodal").click(
+           function () { vm.showModal(!vm.showModal()); }
+           );
 
     </script>
 </html>
