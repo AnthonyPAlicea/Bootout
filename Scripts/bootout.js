@@ -83,6 +83,7 @@ ko.bindingHandlers.modalDisable = {
         }
         else {
             $(element).off('show');
+            $(element).on('show', allBindings.modalOnShow);
         }
     },
 
@@ -98,6 +99,7 @@ ko.bindingHandlers.modalDisable = {
         }
         else {
             $(element).off('show');
+            $(element).on('show', allBindings.modalOnShow);
         }
     }
 }
@@ -129,6 +131,54 @@ ko.bindingHandlers.modalShow = {
         else {
             $(element).modal("hide");
         }
+    }
+}
+
+/* modalOnShow - event handler for when show is initiated */
+ko.bindingHandlers.modalOnShow = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('show', valueUnwrapped);
+    }
+}
+
+/* modalOnShown - event handler for when show is completed */
+ko.bindingHandlers.modalOnShown = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('shown', valueUnwrapped);
+    }
+}
+
+/* modalOnHide - event handler for when hide is initiated */
+ko.bindingHandlers.modalOnHide = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('hide', valueUnwrapped);
+    }
+}
+
+/* modalOnHidden - event handler for when hide is completed */
+ko.bindingHandlers.modalOnHidden = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('hidden', valueUnwrapped);
     }
 }
 
