@@ -226,6 +226,78 @@ ko.bindingHandlers.alertSetup = {
     }
 }
 
+/* alertIsBlock - should alert be a block alert */
+ko.bindingHandlers.alertIsBlock = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).addClass("alert-block");
+        }
+        else {
+            $(element).removeClass("alert-block");
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).addClass("alert-block");
+        }
+        else {
+            $(element).removeClass("alert-block");
+        }
+    }
+}
+
+/* alertType - adds 'alert-' class for the string value assigned
+* note both a value of "" and null will remove ALL alert- classes from the element
+* with the exception of the 'alert-block' class */
+
+var validAlertTypes = ["error", "success", "info"];
+
+ko.bindingHandlers.alertType = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if ($.inArray(valueUnwrapped, validAlertTypes) > -1) {
+            if (valueUnwrapped != "" && valueUnwrapped) {
+                $(element).addClass("alert-" + valueUnwrapped);
+            }
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+        var alertIsBlock = ko.utils.unwrapObservable(allBindings.alertIsBlock);
+
+        // remove all existing alert- classes
+        $(element).removeClass(function (index, css) {
+            return (css.match(/\balert-\S+/g) || []).join(' ');
+        });
+
+        if (alertIsBlock) { $(element).addClass("alert-block"); }
+
+        // add the bound alert type
+        if ($.inArray(valueUnwrapped, validAlertTypes) > -1) {
+            if (valueUnwrapped != "" && valueUnwrapped) {
+                $(element).addClass("alert-" + valueUnwrapped);
+            }
+        }
+    }
+}
+
 /* alertShow - show or hide the alert
 *  note: the 'close' and 'closed' event are mimicked when alertShow is set to false
 *  the 'close' and 'closed' events will not fire if the element is already hidden 

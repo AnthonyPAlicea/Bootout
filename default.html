@@ -50,11 +50,14 @@
             <div class="span12">
                 <h1>Alerts</h1>
                 <p>Note we do not use the standard bootstrap alert 'close' as it removes the element from the DOM. Instead we fade in and out via jQuery.</p>
+                <p>Also note that valid values for alertType are 'info', 'success', 'error' - any other value will default to a standard alert</p>
                 <p>
                 <a href="#" id="fadealert" role="button" class="btn">Fade alert</a>
                 <a href="#" id="showalert" role="button" class="btn">Show alert</a>
+                <a href="#" id="swapblock" role="button" class="btn">Block</a>
+                <a href="#" id="swapalert" role="button" class="btn">Type</a>
                 </p>
-                <div data-bind="alertSetup: true, alertOnClose: onCloseAlert, alertOnClosed: onClosedAlert, alertOnShow: onShowAlert, alertOnShown: onShownAlert, alertShow: showAlert, alertFade: fadeAlert">
+                <div data-bind="alertSetup: true, alertOnClose: onCloseAlert, alertOnClosed: onClosedAlert, alertOnShow: onShowAlert, alertOnShown: onShownAlert, alertShow: showAlert, alertFade: fadeAlert, alertIsBlock: alertIsABlock, alertType:alertTypename">
                     <button type="button" class="close" data-bind="click: function() { showAlert(false); }">×</button>
                     <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
                 </div>
@@ -71,7 +74,9 @@
             showModal: ko.observable(false),
             icon: ko.observable("ok"),
             showAlert: ko.observable(true),
-            fadeAlert: ko.observable(true)
+            fadeAlert: ko.observable(true),
+            alertIsABlock: ko.observable(true),
+            alertTypename: ko.observable("")
         };
 
         vm.onShowModal = function () {
@@ -130,6 +135,15 @@
 
         $("#showalert").click(
            function () { vm.showAlert(!vm.showAlert()); }
+           );
+
+        $("#swapblock").click(
+           function () { vm.alertIsABlock(!vm.alertIsABlock()); }
+           );
+
+        $("#swapalert").toggle(
+           function () { vm.alertTypename("info"); },
+           function () { vm.alertTypename(""); }
            );
 
     </script>
