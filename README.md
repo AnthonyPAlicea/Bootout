@@ -7,4 +7,6 @@ Bindings currently available for:
 
 -Modals
 
+-Alerts
+
 -Bootstrap Icons

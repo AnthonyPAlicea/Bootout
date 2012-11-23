@@ -9,6 +9,19 @@
     <script src="Scripts/bootout.js"></script>
 </head>
 <body>
+     <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { show: false }">
+        <div class="modal-header">
+            <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
+            <h3 id="H1">KO Modal header</h3>
+        </div>
+        <div class="modal-body">
+            <p>KO body…</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" aria-hidden="true" data-bind="click: function() { showModal(false); }">Close</button>
+            <button class="btn btn-primary" data-bind="click: function() { showModal(false); }">Save changes</button>
+        </div>
+    </div>
 
     <div class="container">
 
@@ -30,19 +43,22 @@
                 <i data-bind="bootstrapIcon: icon"></i>
             </div>
         </div>
-    </div>
-
-    <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { show: false }">
-        <div class="modal-header">
-            <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
-            <h3 id="H1">KO Modal header</h3>
+        <div class="row">
+            <div class="span12">&nbsp;</div>
         </div>
-        <div class="modal-body">
-            <p>KO body…</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" aria-hidden="true" data-bind="click: function() { showModal(false); }">Close</button>
-            <button class="btn btn-primary" data-bind="click: function() { showModal(false); }">Save changes</button>
+        <div class="row">
+            <div class="span12">
+                <h1>Alerts</h1>
+                <p>Note we do not use the standard bootstrap alert 'close' as it removes the element from the DOM. Instead we fade in and out via jQuery.</p>
+                <p>
+                <a href="#" id="fadealert" role="button" class="btn">Fade alert</a>
+                <a href="#" id="showalert" role="button" class="btn">Show alert</a>
+                </p>
+                <div data-bind="alertSetup: true, alertOnClose: onCloseAlert, alertOnClosed: onClosedAlert, alertOnShow: onShowAlert, alertOnShown: onShownAlert, alertShow: showAlert, alertFade: fadeAlert">
+                    <button type="button" class="close" data-bind="click: function() { showAlert(false); }">×</button>
+                    <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+                </div>
+            </div>
         </div>
     </div>
 
@@ -53,23 +69,41 @@
             disableModal: ko.observable(false),
             fadeModal: ko.observable(true),
             showModal: ko.observable(false),
-            icon: ko.observable("ok")
+            icon: ko.observable("ok"),
+            showAlert: ko.observable(true),
+            fadeAlert: ko.observable(true)
         };
 
         vm.onShowModal = function () {
-            alert("show!");
+            //alert("show!");
         };
 
         vm.onShownModal = function () {
-            alert("shown!");
+            //alert("shown!");
         };
 
         vm.onHideModal = function () {
-            alert("hide!");
+            //alert("hide!");
         };
 
         vm.onHiddenModal = function () {
-            alert("hidden!");
+            //alert("hidden!");
+        };
+
+        vm.onShowAlert = function () {
+            //alert("show!");
+        };
+
+        vm.onShownAlert = function () {
+            //alert("shown!");
+        };
+
+        vm.onCloseAlert = function () {
+            //alert("close!");
+        };
+
+        vm.onClosedAlert = function () {
+            //alert("closed!");
         };
 
         ko.applyBindings(vm);
@@ -88,6 +122,14 @@
 
         $("#iconswap").click(
            function () { vm.icon("remove"); }
+           );
+
+        $("#fadealert").click(
+           function () { vm.fadeAlert(!vm.fadeAlert()); }
+           );
+
+        $("#showalert").click(
+           function () { vm.showAlert(!vm.showAlert()); }
            );
 
     </script>
