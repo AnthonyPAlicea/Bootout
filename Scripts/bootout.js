@@ -438,7 +438,190 @@ ko.bindingHandlers.alertOnClosed = {
 
 
 
-/* Collapse */
+/* 
+* Collapse 
+*/
+
+/* collapseSetup - Adds classes for a collapsible area. */
+/* note this is only an initializer, does not track updates */
+ko.bindingHandlers.collapseSetup = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        var options = allBindings.collapseOptions || {};
+
+        if (valueUnwrapped === true) {
+            $(element).collapse(options);
+        }
+    }
+
+}
+
+/* collapseIsOpen - Opens and closes the collapsible area. */
+ko.bindingHandlers.collapseIsOpen = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).collapse('show');
+        }
+        else {
+            $(element).collapse("hide");
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).collapse('show');
+        }
+        else {
+            $(element).collapse("hide");
+        }
+    }
+}
+
+
+/* collapseAction - runs the action against the target specified in the
+* 'collapseTarget' binding. The 'collapseTarget' binding should be the id
+* of the element containing the collapsible area. Likely whatever you
+* bound 'collapseSetup' to. */
+var validCollapseActionTypes = ["show", "hide", "toggle"];
+
+ko.bindingHandlers.collapseAction = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        var target = ko.utils.unwrapObservable(allBindings.collapseTarget);
+
+        if ($.inArray(valueUnwrapped, validCollapseActionTypes) > -1) {
+
+            $(element).unbind('click');
+            var targetDivIdSelector = '#' + target;
+
+            if (target !== "" && target) {
+
+                $(element).click(function (event) {
+
+                    event.preventDefault();
+
+                    switch (valueUnwrapped)
+                    {
+                        case "show":
+                            $(targetDivIdSelector).collapse('show');
+                            break;
+                        case "hide":
+                            $(targetDivIdSelector).collapse('hide');
+                            break;
+                        case "toggle":
+                            $(targetDivIdSelector).collapse('toggle');
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        var target = ko.utils.unwrapObservable(allBindings.collapseTarget);
+
+        if ($.inArray(valueUnwrapped, validCollapseActionTypes) > -1) {
+
+            $(element).unbind('click');
+            var targetDivIdSelector = '#' + target;
+
+            if (target !== "" && target) {
+
+                $(element).click(function (event) {
+
+                    event.preventDefault();
+
+                    switch (valueUnwrapped)
+                    {
+                        case "show":
+                            $(targetDivIdSelector).collapse('show');
+                            break;
+                        case "hide":
+                            $(targetDivIdSelector).collapse('hide');
+                            break;
+                        case "toggle":
+                            $(targetDivIdSelector).collapse('toggle');
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+        }
+    }
+}
+
+/* collapseOnShow - event handler for when show is initiated */
+ko.bindingHandlers.collapseOnShow = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('show', valueUnwrapped);
+    }
+}
+
+/* collapseOnShown - event handler for when show is completed */
+ko.bindingHandlers.collapseOnShown = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('shown', valueUnwrapped);
+    }
+}
+
+/* collapseOnHide - event handler for when hide is initiated */
+ko.bindingHandlers.collapseOnHide = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('hide', valueUnwrapped);
+    }
+}
+
+/* collapseOnHidden - event handler for when hide is completed */
+ko.bindingHandlers.collapseOnHidden = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        $(element).on('hidden', valueUnwrapped);
+    }
+}
+
 
 
 
@@ -552,38 +735,6 @@ ko.bindingHandlers.progressBarContainerIsAnimated = {
     }
 }
 
-/* progressBarIsBar - setup needed classes for an individual progress bar
-* note this bindings applies to the individual bar, not the container */
-ko.bindingHandlers.progressBarIsBar = {
-
-    init: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).addClass("bar");
-        }
-        else {
-            $(element).removeClass("bar");
-        }
-    },
-
-    update: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).addClass("bar");
-        }
-        else {
-            $(element).removeClass("bar");
-        }
-    }
-}
-
-
 /* progressBarContainerType - adds 'progress-' class for the string value assigned
 * note both a value of "" and null will remove ALL progress- classes from the element
 * with the exception of the 'progress-striped' class
@@ -627,6 +778,36 @@ ko.bindingHandlers.progressBarContainerType = {
     }
 }
 
+/* progressBarIsBar - setup needed classes for an individual progress bar
+* note this bindings applies to the individual bar, not the container */
+ko.bindingHandlers.progressBarIsBar = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).addClass("bar");
+        }
+        else {
+            $(element).removeClass("bar");
+        }
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+
+        var value = valueAccessor(), allBindings = allBindingsAccessor();
+        var valueUnwrapped = ko.utils.unwrapObservable(value);
+
+        if (valueUnwrapped === true) {
+            $(element).addClass("bar");
+        }
+        else {
+            $(element).removeClass("bar");
+        }
+    }
+}
 
 /* progressBarType - adds 'bar-' class for the string value assigned
 * note this is used for typing the individual bar */
@@ -663,18 +844,6 @@ ko.bindingHandlers.progressBarType = {
     }
 }
 
-/* Used by the 'progressBarWidth' binding: Tests if the width is a valid integer value (between 0 and 100) */
-function isValidProgressBarWidth(value) {
-    if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
-        if (value >= 0 && value <= 100) {
-            return true;
-        }
-        else { return false; }
-    } else {
-        return false;
-    }
-}
-
 /* progressBarWidth - sets the width of the individual bar */
 ko.bindingHandlers.progressBarWidth = {
 
@@ -704,6 +873,7 @@ ko.bindingHandlers.progressBarWidth = {
         }
     }
 }
+
 
 
 
@@ -739,5 +909,22 @@ ko.bindingHandlers.bootstrapIcon = {
         if (valueUnwrapped != "" && valueUnwrapped) {
             $(element).addClass("icon-" + valueUnwrapped);
         }
+    }
+}
+
+
+/*
+* Helper Methods
+*/
+
+/* Used by the 'progressBarWidth' binding: Tests if the width is a valid integer value (between 0 and 100) */
+function isValidProgressBarWidth(value) {
+    if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
+        if (value >= 0 && value <= 100) {
+            return true;
+        }
+        else { return false; }
+    } else {
+        return false;
     }
 }

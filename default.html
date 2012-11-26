@@ -77,6 +77,26 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="span12">
+                <h1>Collapse</h1>
+                <p>
+                    <a href="#" id="collapsetoggletarget" role="button" class="btn">Toggle Click Target</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'show'" role="button" class="btn">Show</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'hide'" role="button" class="btn">Hide</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'toggle'" role="button" class="btn">Toggle</a>
+                </p>
+                
+                <h6><a href="#" id="collapse1header">Collapse 1</a></h6>
+                <div id="collapseMe1" data-bind="collapseSetup: true, collapseOptions: { toggle: true }, collapseIsOpen: collapse1IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+                <h6><a href="#" id="collapse2header">Collapse 2</a></h6>
+                <div id="collapseMe2" data-bind="collapseSetup: true, collapseOptions: { toggle: true }, collapseIsOpen: collapse2IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
@@ -94,7 +114,10 @@
             progressBarType: ko.observable("info"),
             progressBarWidth: ko.observable(50),
             progressBarIsStriped: ko.observable(true),
-            progressBarIsAnimated: ko.observable(true)
+            progressBarIsAnimated: ko.observable(true),
+            collapseDiv: ko.observable("collapseMe1"),
+            collapse1IsOpen: ko.observable(true),
+            collapse2IsOpen: ko.observable(true)
         };
 
         vm.onShowModal = function () {
@@ -127,6 +150,22 @@
 
         vm.onClosedAlert = function () {
             //alert("closed!");
+        };
+
+        vm.onShowCollapse = function () {
+            //alert("show!");
+        };
+
+        vm.onShownCollapse = function () {
+            //alert("shown!");
+        };
+
+        vm.onHideCollapse = function () {
+            //alert("hide!");
+        };
+
+        vm.onHiddenCollapse = function () {
+            //alert("hidden!");
         };
 
         ko.applyBindings(vm);
@@ -183,6 +222,19 @@
         $("#progressanimated").toggle(
            function () { vm.progressBarIsAnimated(false); },
            function () { vm.progressBarIsAnimated(true); }
+           );
+
+        $("#collapsetoggletarget").toggle(
+           function () { vm.collapseDiv("collapseMe2"); },
+           function () { vm.collapseDiv("collapseMe1"); }
+           );
+
+        $("#collapse1header").click(
+           function () { vm.collapse1IsOpen(!vm.collapse1IsOpen()); }
+           );
+
+        $("#collapse2header").click(
+           function () { vm.collapse2IsOpen(!vm.collapse2IsOpen()); }
            );
 
     </script>
