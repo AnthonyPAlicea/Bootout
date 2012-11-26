@@ -53,13 +53,27 @@
                 <p>Also note that valid values for alertType are 'info', 'success', 'error' - any other value will default to a standard alert</p>
                 <p>
                 <a href="#" id="fadealert" role="button" class="btn">Fade alert</a>
-                <a href="#" id="showalert" role="button" class="btn">Show alert</a>
+                <a href="#" id="showalert" role="button" class="btn">Show/Hide alert</a>
                 <a href="#" id="swapblock" role="button" class="btn">Block</a>
                 <a href="#" id="swapalert" role="button" class="btn">Type</a>
                 </p>
                 <div data-bind="alertSetup: true, alertOnClose: onCloseAlert, alertOnClosed: onClosedAlert, alertOnShow: onShowAlert, alertOnShown: onShownAlert, alertShow: showAlert, alertFade: fadeAlert, alertIsBlock: alertIsABlock, alertType:alertTypename">
                     <button type="button" class="close" data-bind="click: function() { showAlert(false); }">×</button>
                     <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h1>Progress Bars</h1>
+                <p>
+                    <a href="#" id="progresspercentage" role="button" class="btn">Toggle Percentage</a>
+                    <a href="#" id="progresstype" role="button" class="btn">Type</a>
+                    <a href="#" id="progressstriped" role="button" class="btn">Striped</a>
+                    <a href="#" id="progressanimated" role="button" class="btn">Animated</a>
+                </p>
+                <div data-bind="progressBarIsContainer: true, progressBarContainerIsStriped: progressBarIsStriped, progressBarContainerIsAnimated: progressBarIsAnimated, progressBarContainerType: progressBarType">
+                    <div data-bind="progressBarIsBar: true, progressBarWidth: progressBarWidth, progressBarType: progressBarType"></div>
                 </div>
             </div>
         </div>
@@ -76,7 +90,11 @@
             showAlert: ko.observable(true),
             fadeAlert: ko.observable(true),
             alertIsABlock: ko.observable(true),
-            alertTypename: ko.observable("")
+            alertTypename: ko.observable(""),
+            progressBarType: ko.observable("info"),
+            progressBarWidth: ko.observable(50),
+            progressBarIsStriped: ko.observable(true),
+            progressBarIsAnimated: ko.observable(true)
         };
 
         vm.onShowModal = function () {
@@ -125,8 +143,9 @@
            function () { vm.showModal(!vm.showModal()); }
            );
 
-        $("#iconswap").click(
-           function () { vm.icon("remove"); }
+        $("#iconswap").toggle(
+           function () { vm.icon("remove"); },
+           function () { vm.icon("ok"); }
            );
 
         $("#fadealert").click(
@@ -144,6 +163,26 @@
         $("#swapalert").toggle(
            function () { vm.alertTypename("info"); },
            function () { vm.alertTypename(""); }
+           );
+
+        $("#progresspercentage").toggle(
+           function () { vm.progressBarWidth(75); },
+           function () { vm.progressBarWidth(50); }
+           );
+
+        $("#progresstype").toggle(
+           function () { vm.progressBarType("danger"); },
+           function () { vm.progressBarType("info"); }
+           );
+
+        $("#progressstriped").toggle(
+           function () { vm.progressBarIsStriped(false); },
+           function () { vm.progressBarIsStriped(true); }
+           );
+
+        $("#progressanimated").toggle(
+           function () { vm.progressBarIsAnimated(false); },
+           function () { vm.progressBarIsAnimated(true); }
            );
 
     </script>
