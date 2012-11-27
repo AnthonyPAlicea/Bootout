@@ -752,7 +752,7 @@ ko.bindingHandlers.progressBarContainerType = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if ($.inArray(valueUnwrapped, validAlertTypes) > -1) {
+        if ($.inArray(valueUnwrapped, validProgressBarTypes) > -1) {
             if (valueUnwrapped != "" && valueUnwrapped) {
                 $(element).addClass("progress-" + valueUnwrapped);
             }
@@ -821,7 +821,7 @@ ko.bindingHandlers.progressBarType = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if ($.inArray(valueUnwrapped, validAlertTypes) > -1) {
+        if ($.inArray(valueUnwrapped, validProgressBarTypes) > -1) {
             if (valueUnwrapped != "" && valueUnwrapped) {
                 $(element).addClass("bar-" + valueUnwrapped);
             }
