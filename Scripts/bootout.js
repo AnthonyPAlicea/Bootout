@@ -434,7 +434,9 @@ ko.bindingHandlers.alertOnClosed = {
 }
 
 
-/* Button */
+/* 
+* Button 
+*/
 
 
 
@@ -634,6 +636,7 @@ ko.bindingHandlers.collapseOnHidden = {
 
 
 /* Affix */
+
 
 
 
@@ -852,7 +855,7 @@ ko.bindingHandlers.progressBarWidth = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if (isValidProgressBarWidth(valueUnwrapped)) {
+        if (ko.utils.isValidProgressBarWidth(valueUnwrapped)) {
             $(element).attr("style", "width: " + valueUnwrapped + "%");
         }
         else {
@@ -865,7 +868,7 @@ ko.bindingHandlers.progressBarWidth = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if (isValidProgressBarWidth(valueUnwrapped)) {
+        if (ko.utils.isValidProgressBarWidth(valueUnwrapped)) {
             $(element).attr("style", "width: " + valueUnwrapped + "%");
         }
         else {
@@ -873,7 +876,6 @@ ko.bindingHandlers.progressBarWidth = {
         }
     }
 }
-
 
 
 
@@ -918,7 +920,7 @@ ko.bindingHandlers.bootstrapIcon = {
 */
 
 /* Used by the 'progressBarWidth' binding: Tests if the width is a valid integer value (between 0 and 100) */
-function isValidProgressBarWidth(value) {
+ko.utils.isValidProgressBarWidth = function (value) {
     if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
         if (value >= 0 && value <= 100) {
             return true;
