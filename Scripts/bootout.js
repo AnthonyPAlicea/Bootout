@@ -26,6 +26,10 @@ ko.bindingHandlers.modalSetup = {
 
             var options = allBindings.modalOptions || {};
 
+            // prevent standard bootstrap handling of modal backdrops
+            var backdropOption = options.backdrop;
+            var backdropIsSetToDefault = ((!backdropOption && backdropOption !== false && backdropOption !== 'static') || backdropOption === true);
+
             // modal attributes
             $(element).attr("tabindex", "-1").attr("role", "dialog").attr("aria-hidden", true);
             if (allBindings.modalAriaLabelId) {
@@ -34,6 +38,15 @@ ko.bindingHandlers.modalSetup = {
 
             // modal css classes
             $(element).addClass("modal").addClass("hide").modal(options);
+
+            // manually handle backdrop click, so that it updates observable bound to 'modalShow'
+            if (backdropIsSetToDefault) {
+                $(document).on("click", ".modal-backdrop", function () {
+
+                    allBindings.modalShow(false);
+
+                }).bind(allBindings);
+            }
         }
     }
 }
@@ -179,6 +192,9 @@ ko.bindingHandlers.modalOnHidden = {
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
         $(element).on('hidden', valueUnwrapped);
+
+        // make certain the backdrop is removed
+        $(element).on('hidden', function () { $(".modal-backdrop").remove(); });
     }
 }
 
@@ -259,7 +275,6 @@ ko.bindingHandlers.alertIsBlock = {
 /* alertType - adds 'alert-' class for the string value assigned
 * note both a value of "" and null will remove ALL alert- classes from the element
 * with the exception of the 'alert-block' class */
-
 var validAlertTypes = ["error", "success", "info"];
 
 ko.bindingHandlers.alertType = {
@@ -644,8 +659,9 @@ ko.bindingHandlers.collapseOnHidden = {
 * Progress Bars 
 */
 
-/* progressBarIsContainer - setup needed classes for an progress bar containing div */
-ko.bindingHandlers.progressBarIsContainer = {
+/* progressBarContainerSetup - setup needed classes for an progress bar containing div */
+/* note this is only an initializer, does not track updates */
+ko.bindingHandlers.progressBarContainerSetup = {
 
     init: function (element, valueAccessor, allBindingsAccessor) {
 
@@ -658,21 +674,7 @@ ko.bindingHandlers.progressBarIsContainer = {
         else {
             $(element).removeClass("progress");
         }
-    },
-
-    update: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).addClass("progress");
-        }
-        else {
-            $(element).removeClass("progress");
-        }
     }
-
 }
 
 /* progressBarContainerIsStriped - setup needed classes for striped progress bars
@@ -781,24 +783,12 @@ ko.bindingHandlers.progressBarContainerType = {
     }
 }
 
-/* progressBarIsBar - setup needed classes for an individual progress bar
+/* progressBarSetup - setup needed classes for an individual progress bar
 * note this bindings applies to the individual bar, not the container */
-ko.bindingHandlers.progressBarIsBar = {
+/* also note this is only an initializer, does not track updates */
+ko.bindingHandlers.progressBarSetup = {
 
     init: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).addClass("bar");
-        }
-        else {
-            $(element).removeClass("bar");
-        }
-    },
-
-    update: function (element, valueAccessor, allBindingsAccessor) {
 
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);

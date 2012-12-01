@@ -9,7 +9,7 @@
     <script src="Scripts/bootout.js"></script>
 </head>
 <body>
-     <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { show: false }">
+     <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
         <div class="modal-header">
             <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
             <h3 id="H1">KO Modal header</h3>
@@ -72,8 +72,8 @@
                     <a href="#" id="progressstriped" role="button" class="btn">Striped</a>
                     <a href="#" id="progressanimated" role="button" class="btn">Animated</a>
                 </p>
-                <div data-bind="progressBarIsContainer: true, progressBarContainerIsStriped: progressBarIsStriped, progressBarContainerIsAnimated: progressBarIsAnimated, progressBarContainerType: progressBarType">
-                    <div data-bind="progressBarIsBar: true, progressBarWidth: progressBarWidth, progressBarType: progressBarType"></div>
+                <div data-bind="progressBarContainerSetup: true, progressBarContainerIsStriped: progressBarIsStriped, progressBarContainerIsAnimated: progressBarIsAnimated, progressBarContainerType: progressBarType">
+                    <div data-bind="progressBarSetup: true, progressBarWidth: progressBarWidth, progressBarType: progressBarType"></div>
                 </div>
             </div>
         </div>
