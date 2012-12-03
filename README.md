@@ -11,7 +11,10 @@ Bindings currently available for the following plugins and components:
 
 -Alert
 
+-Button
+
 -Collapse
+
 
 
 <strong>Components</strong>

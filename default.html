@@ -6,7 +6,12 @@
     <script src="Scripts/jquery-1.8.3.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/knockout-2.2.0.js"></script>
-    <script src="Scripts/bootout.js"></script>
+    <script src="Scripts/bootout-src/bootout-alert.js"></script>
+    <script src="Scripts/bootout-src/bootout-button.js"></script>
+    <script src="Scripts/bootout-src/bootout-collapse.js"></script>
+    <script src="Scripts/bootout-src/bootout-icons.js"></script>
+    <script src="Scripts/bootout-src/bootout-modal.js"></script>
+    <script src="Scripts/bootout-src/bootout-progressbar.js"></script>
 </head>
 <body>
      <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
@@ -97,6 +102,32 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="span12">
+                <h1>Buttons</h1>
+                <p>
+                <a href="#" id="buttonsize" role="button" class="btn">Size</a>
+                <a href="#" id="buttontype" role="button" class="btn">Type</a>
+                <a href="#" id="buttontext" role="button" class="btn">Text</a>
+                <a href="#" id="buttonblock" role="button" class="btn">Block</a>
+                <a href="#" id="buttonselect" role="button" class="btn">Select/Unselect</a>
+                <a href="#" id="buttondisable" role="button" class="btn">Disable/Enable</a>
+                </p>
+                <a href="#" data-bind="buttonSetup: true, buttonText: btnText, buttonSize: btnSize, buttonType: btnType, buttonDisable: btnDisabled, buttonIsBlock: btnIsBlock, buttonIsSelected: btnIsSelected"></a> 
+                <h3>Button Group</h3>
+                <p>
+                <a href="#" id="buttongroupvertical" role="button" class="btn">Vertical/Horizontal</a>
+                </p>
+                <div data-bind="buttonGroupSetup: true, buttonGroupIsRadio: true, buttonGroupIsVertical: btnGroupIsVertical">
+                    <a href="#" id="btn1" data-bind="buttonSetup: true, buttonText: 'Button 1', buttonType: 'info', buttonIsSelected: btn1IsSelected"></a> 
+                    <a href="#" id="btn2" data-bind="buttonSetup: true, buttonText: 'Button 2', buttonType: 'info', buttonIsSelected: btn2IsSelected"></a> 
+                    <a href="#" id="btn3" data-bind="buttonSetup: true, buttonText: 'Button 3', buttonType: 'info', buttonIsSelected: btn3IsSelected"></a> 
+                </div>
+            </div>
+        </div>
+
+    <p>&nbsp;</p>
     </div>
 
 </body>
@@ -117,7 +148,17 @@
             progressBarIsAnimated: ko.observable(true),
             collapseDiv: ko.observable("collapseMe1"),
             collapse1IsOpen: ko.observable(true),
-            collapse2IsOpen: ko.observable(true)
+            collapse2IsOpen: ko.observable(true),
+            btnText: ko.observable("Button"),
+            btnSize: ko.observable("default"),
+            btnType: ko.observable("primary"),
+            btnIsBlock: ko.observable(false),
+            btnIsSelected: ko.observable(false),
+            btnDisabled: ko.observable(false),
+            btn1IsSelected: ko.observable(false),
+            btn2IsSelected: ko.observable(false),
+            btn3IsSelected: ko.observable(false),
+            btnGroupIsVertical: ko.observable(false)
         };
 
         vm.onShowModal = function () {
@@ -171,15 +212,15 @@
         ko.applyBindings(vm);
 
         $("#disablemodal").click(
-            function () { vm.disableModal(!vm.disableModal()); }
+            function (event) { event.preventDefault(); vm.disableModal(!vm.disableModal()); }
             );
 
         $("#fademodal").click(
-           function () { vm.fadeModal(!vm.fadeModal()); }
+           function (event) { event.preventDefault(); vm.fadeModal(!vm.fadeModal()); }
            );
 
         $("#showmodal").click(
-           function () { vm.showModal(!vm.showModal()); }
+           function (event) { event.preventDefault(); vm.showModal(!vm.showModal()); }
            );
 
         $("#iconswap").toggle(
@@ -188,15 +229,15 @@
            );
 
         $("#fadealert").click(
-           function () { vm.fadeAlert(!vm.fadeAlert()); }
+           function (event) { event.preventDefault(); vm.fadeAlert(!vm.fadeAlert()); }
            );
 
         $("#showalert").click(
-           function () { vm.showAlert(!vm.showAlert()); }
+           function (event) { event.preventDefault(); vm.showAlert(!vm.showAlert()); }
            );
 
         $("#swapblock").click(
-           function () { vm.alertIsABlock(!vm.alertIsABlock()); }
+           function (event) { event.preventDefault(); vm.alertIsABlock(!vm.alertIsABlock()); }
            );
 
         $("#swapalert").toggle(
@@ -230,12 +271,57 @@
            );
 
         $("#collapse1header").click(
-           function () { vm.collapse1IsOpen(!vm.collapse1IsOpen()); }
+           function (event) { event.preventDefault(); vm.collapse1IsOpen(!vm.collapse1IsOpen()); }
            );
 
         $("#collapse2header").click(
-           function () { vm.collapse2IsOpen(!vm.collapse2IsOpen()); }
+           function (event) { event.preventDefault(); vm.collapse2IsOpen(!vm.collapse2IsOpen()); }
            );
+
+        $("#buttonsize").toggle(
+           function () { vm.btnSize("large"); },
+           function () { vm.btnSize("default"); }
+           );
+
+        $("#buttontype").toggle(
+           function () { vm.btnType("warning"); },
+           function () { vm.btnType("primary"); }
+           );
+
+        $("#buttontext").toggle(
+           function () { vm.btnText("Loading..."); },
+           function () { vm.btnText("Button"); }
+           );
+
+        $("#buttonblock").click(
+           function (event) { event.preventDefault(); vm.btnIsBlock(!vm.btnIsBlock()); }
+           );
+
+        $("#buttonselect").click(
+           function (event) { event.preventDefault(); vm.btnIsSelected(!vm.btnIsSelected()); }
+           );
+
+        $("#buttondisable").click(
+           function (event) { event.preventDefault(); vm.btnDisabled(!vm.btnDisabled()); }
+           );
+
+        $("#btn1").click(
+           function (event) { event.preventDefault(); vm.btn1IsSelected(!vm.btn1IsSelected()); }
+           );
+
+        $("#btn2").click(
+           function (event) { event.preventDefault(); vm.btn2IsSelected(!vm.btn2IsSelected()); }
+           );
+
+        $("#btn3").click(
+           function (event) { event.preventDefault(); vm.btn3IsSelected(!vm.btn3IsSelected()); }
+           );
+
+        $("#buttongroupvertical").click(
+           function (event) { event.preventDefault(); vm.btnGroupIsVertical(!vm.btnGroupIsVertical()); }
+           );
+
+        
 
     </script>
 </html>
