@@ -22,3 +22,22 @@ Bindings currently available for the following plugins and components:
 -Progress Bars
 
 -Icons
+
+
+<strong>Binding Handlers Coming:</strong>
+
+Dropdown
+
+Scrollspy
+
+Tab
+
+Tooltip
+
+Popover
+
+Carousel
+
+Typeahead
+
+Affix
