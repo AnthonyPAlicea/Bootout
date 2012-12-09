@@ -13,6 +13,7 @@
     <script src="Scripts/bootout-src/bootout-modal.js"></script>
     <script src="Scripts/bootout-src/bootout-progressbar.js"></script>
     <script src="Scripts/bootout-src/bootout-tooltip.js"></script>
+    <script src="Scripts/bootout-src/bootout-popover.js"></script>
 </head>
 <body>
      <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
@@ -152,7 +153,7 @@
                 <a href="#" id="tooltipanimation" role="button" class="btn">Animation</a>
                 <a href="#" id="tooltiphtml" role="button" class="btn">HTML</a>
                 </p>
-                This is a <a href="#" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: tooltipTrigger, delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a> example.
+                This is a <a href="#" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: tooltipTrigger, delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a> example.
                 <hr />
                 <p>
                     <a href="#" id="tooltiptoggletarget" role="button" class="btn">Toggle Click Target</a>
@@ -161,7 +162,37 @@
                     <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'toggle'" role="button" class="btn">Toggle</a>
                 </p>
                 <p>&nbsp;</p>
-                This is a <a href="#" id="tooltip1" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a>. This is another <a href="#" id="tooltip2" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a>.
+                This is a <a href="#" id="tooltip1" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>. This is another <a href="#" id="tooltip2" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h1>Popovers</h1>
+                <p>Note all standard popover options can be set in the 'popoverOptions' binding with the exception of the 'selector', 'title', and 'content' options as they do not apply to the case of stateful popover control via Knockout bindings.</p>
+                <p>
+                <a href="#" id="popoverplacement" role="button" class="btn">Placement</a>
+                <a href="#" id="popovertrigger" role="button" class="btn">Trigger</a>
+                <a href="#" id="popoverdelay" role="button" class="btn">Delay</a>
+                <a href="#" id="popovertitle" role="button" class="btn">Title</a>
+                <a href="#" id="popovercontent" role="button" class="btn">Content</a>
+                <a href="#" id="popoveranimation" role="button" class="btn">Animation</a>
+                <a href="#" id="popoverhtml" role="button" class="btn">HTML</a>
+                </p>
+                This is a <a href="#" data-bind="popoverSetup: true, popoverOptions: { placement: popoverPlacement, trigger: popoverTrigger, delay: { show: popoverDelayShow, hide: popoverDelayHide }, animation: popoverAnimation, html: popoverHtml }, popoverTitle: popoverTitle, popoverContent: popoverContent" onclick="return false;">popover</a> example.
+                <hr />
+                <div class="pull-right">
+                This is a <a href="#" id="popover1" data-bind="popoverSetup: true, popoverOptions: { placement: popoverPlacement, trigger: 'manual', delay: { show: popoverDelayShow, hide: popoverDelayHide }, animation: popoverAnimation, html: popoverHtml }, popoverTitle: popoverTitle, popoverContent: popoverContent" onclick="return false;">popover</a>. This is another <a href="#" id="popover2" data-bind="popoverSetup: true, popoverOptions: { placement: popoverPlacement, trigger: 'manual', delay: { show: popoverDelayShow, hide: popoverDelayHide }, animation: popoverAnimation, html: popoverHtml }, popoverTitle: popoverTitle, popoverContent: popoverContent" onclick="return false;">popover</a>.
+                </div>
+                <p>
+                    <a href="#" id="popovertoggletarget" role="button" class="btn">Toggle Click Target</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'show'" role="button" class="btn">Show</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'hide'" role="button" class="btn">Hide</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'toggle'" role="button" class="btn">Toggle</a>
+                </p>
             </div>
         </div>
 
@@ -205,7 +236,17 @@
             tooltipAnimation: ko.observable(true),
             tooltipHtml: ko.observable(true),
             tooltipIsOpen: ko.observable(false),
-            tooltipLink: ko.observable("tooltip1")
+            tooltipLink: ko.observable("tooltip1"),
+            popoverPlacement: ko.observable('top'),
+            popoverTrigger: ko.observable('hover'),
+            popoverDelayShow: ko.observable(100),
+            popoverDelayHide: ko.observable(100),
+            popoverTitle: ko.observable('this is a <strong>popover</strong>'),
+            popoverContent: ko.observable('this is the <em>popover</em> content. it is bound to an observable.'),
+            popoverAnimation: ko.observable(true),
+            popoverHtml: ko.observable(true),
+            popoverIsOpen: ko.observable(false),
+            popoverLink: ko.observable("popover1")
         };
 
         vm.onShowModal = function () {
@@ -399,6 +440,44 @@
         $("#tooltiptoggletarget").toggle(
            function () { vm.tooltipLink("tooltip2"); },
            function () { vm.tooltipLink("tooltip1"); }
+           );
+
+        $("#popoverplacement").toggle(
+           function () { vm.popoverPlacement("left"); },
+           function () { vm.popoverPlacement("top"); }
+           );
+
+        $("#popovertrigger").toggle(
+           function () { vm.popoverTrigger("click"); },
+           function () { vm.popoverTrigger("hover"); }
+           );
+
+        $("#popoverdelay").toggle(
+           function () { vm.popoverDelayShow(1000); },
+           function () { vm.popoverDelayShow(100); }
+           );
+
+        $("#popovertitle").toggle(
+           function () { vm.popoverTitle("this popover was changed"); },
+           function () { vm.popoverTitle("this is a <strong>popover</strong>"); }
+           );
+
+        $("#popovercontent").toggle(
+           function () { vm.popoverContent("this is the <strong>change popover content</strong> content. it is bound to an observable"); },
+           function () { vm.popoverContent("this is the <em>popover</em> content. it is bound to an observable"); }
+           );
+
+        $("#popoveranimation").click(
+           function (event) { event.preventDefault(); vm.popoverAnimation(!vm.popoverAnimation()); }
+           );
+
+        $("#popoverhtml").click(
+           function (event) { event.preventDefault(); vm.popoverHtml(!vm.popoverHtml()); }
+           );
+
+        $("#popovertoggletarget").toggle(
+           function () { vm.popoverLink("popover2"); },
+           function () { vm.popoverLink("popover1"); }
            );
 
     </script>

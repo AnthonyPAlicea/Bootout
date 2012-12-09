@@ -18,6 +18,8 @@ Bindings currently available for the following plugins and components:
 
 -Tooltip
 
+-Popover
+
 -Alert
 
 -Button
@@ -33,7 +35,8 @@ Bindings currently available for the following plugins and components:
 -Icons
 
 
-
+<hr />
+<br />
 <strong>Binding Handlers Coming:</strong>
 
 Dropdown
@@ -41,8 +44,6 @@ Dropdown
 Scrollspy
 
 Tab
-
-Popover
 
 Carousel
 
