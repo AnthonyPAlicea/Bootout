@@ -28,7 +28,6 @@ ko.bindingHandlers.collapseSetup = {
             $(element).collapse(options);
         }
     }
-
 }
 
 /* collapseIsOpen - Opens and closes the collapsible area. */

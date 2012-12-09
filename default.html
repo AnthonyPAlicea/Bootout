@@ -12,6 +12,7 @@
     <script src="Scripts/bootout-src/bootout-icons.js"></script>
     <script src="Scripts/bootout-src/bootout-modal.js"></script>
     <script src="Scripts/bootout-src/bootout-progressbar.js"></script>
+    <script src="Scripts/bootout-src/bootout-tooltip.js"></script>
 </head>
 <body>
      <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
@@ -69,6 +70,9 @@
             </div>
         </div>
         <div class="row">
+            <div class="span12">&nbsp;</div>
+        </div>
+        <div class="row">
             <div class="span12">
                 <h1>Progress Bars</h1>
                 <p>
@@ -83,8 +87,12 @@
             </div>
         </div>
         <div class="row">
+            <div class="span12">&nbsp;</div>
+        </div>
+        <div class="row">
             <div class="span12">
                 <h1>Collapse</h1>
+                <p>Note the 'collapseIsOpen' binding and the 'collapseTarget/collapseAction' bindings should not be used together, rather one or the other, as the collapseTarget binding will not update the observable attached to the collapseIsOpen of the target element.</p>
                 <p>
                     <a href="#" id="collapsetoggletarget" role="button" class="btn">Toggle Click Target</a>
                     <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'show'" role="button" class="btn">Show</a>
@@ -93,16 +101,18 @@
                 </p>
                 
                 <h6><a href="#" id="collapse1header">Collapse 1</a></h6>
-                <div id="collapseMe1" data-bind="collapseSetup: true, collapseOptions: { toggle: true }, collapseIsOpen: collapse1IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
+                <div id="collapseMe1" data-bind="collapseSetup: true, collapseIsOpen: collapse1IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
                 <h6><a href="#" id="collapse2header">Collapse 2</a></h6>
-                <div id="collapseMe2" data-bind="collapseSetup: true, collapseOptions: { toggle: true }, collapseIsOpen: collapse2IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
+                <div id="collapseMe2" data-bind="collapseSetup: true, collapseIsOpen: collapse2IsOpen, collapseOnShow: onShowCollapse, collapseOnShown: onShownCollapse, collapseOnHide: onHideCollapse, collapseOnHidden: onHiddenCollapse">
                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="span12">&nbsp;</div>
+        </div>
         <div class="row">
             <div class="span12">
                 <h1>Buttons</h1>
@@ -115,6 +125,7 @@
                 <a href="#" id="buttondisable" role="button" class="btn">Disable/Enable</a>
                 </p>
                 <a href="#" data-bind="buttonSetup: true, buttonText: btnText, buttonSize: btnSize, buttonType: btnType, buttonDisable: btnDisabled, buttonIsBlock: btnIsBlock, buttonIsSelected: btnIsSelected"></a> 
+                <hr />
                 <h3>Button Group</h3>
                 <p>
                 <a href="#" id="buttongroupvertical" role="button" class="btn">Vertical/Horizontal</a>
@@ -126,8 +137,35 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="span12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h1>Tooltips</h1>
+                <p>Note all standard tooltip options can be set in the 'tooltipOptions' binding with the exception of the 'selector' and 'title' options as they do not apply to the case of stateful tooltip control via Knockout bindings.</p>
+                <p>
+                <a href="#" id="tooltipplacement" role="button" class="btn">Placement</a>
+                <a href="#" id="tooltiptrigger" role="button" class="btn">Trigger</a>
+                <a href="#" id="tooltipdelay" role="button" class="btn">Delay</a>
+                <a href="#" id="tooltiptitle" role="button" class="btn">Title</a>
+                <a href="#" id="tooltipanimation" role="button" class="btn">Animation</a>
+                <a href="#" id="tooltiphtml" role="button" class="btn">HTML</a>
+                </p>
+                This is a <a href="#" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: tooltipTrigger, delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a> example.
+                <hr />
+                <p>
+                    <a href="#" id="tooltiptoggletarget" role="button" class="btn">Toggle Click Target</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'show'" role="button" class="btn">Show</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'hide'" role="button" class="btn">Hide</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'toggle'" role="button" class="btn">Toggle</a>
+                </p>
+                <p>&nbsp;</p>
+                This is a <a href="#" id="tooltip1" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a>. This is another <a href="#" id="tooltip2" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle">tooltip</a>.
+            </div>
+        </div>
 
-    <p>&nbsp;</p>
+    <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
     </div>
 
 </body>
@@ -158,7 +196,16 @@
             btn1IsSelected: ko.observable(false),
             btn2IsSelected: ko.observable(false),
             btn3IsSelected: ko.observable(false),
-            btnGroupIsVertical: ko.observable(false)
+            btnGroupIsVertical: ko.observable(false),
+            tooltipPlacement: ko.observable('top'),
+            tooltipTrigger: ko.observable('hover'),
+            tooltipDelayShow: ko.observable(100),
+            tooltipDelayHide: ko.observable(100),
+            tooltipTitle: ko.observable('this is a <strong>tooltip</strong>'),
+            tooltipAnimation: ko.observable(true),
+            tooltipHtml: ko.observable(true),
+            tooltipIsOpen: ko.observable(false),
+            tooltipLink: ko.observable("tooltip1")
         };
 
         vm.onShowModal = function () {
@@ -321,7 +368,38 @@
            function (event) { event.preventDefault(); vm.btnGroupIsVertical(!vm.btnGroupIsVertical()); }
            );
 
+        $("#tooltipplacement").toggle(
+           function () { vm.tooltipPlacement("left"); },
+           function () { vm.tooltipPlacement("top"); }
+           );
+
+        $("#tooltiptrigger").toggle(
+           function () { vm.tooltipTrigger("click"); },
+           function () { vm.tooltipTrigger("hover"); }
+           );
         
+        $("#tooltipdelay").toggle(
+           function () { vm.tooltipDelayShow(1000); },
+           function () { vm.tooltipDelayShow(100); }
+           );
+
+        $("#tooltiptitle").toggle(
+           function () { vm.tooltipTitle("this tooltip was changed"); },
+           function () { vm.tooltipTitle("this is a <strong>tooltip</strong>"); }
+           );
+
+        $("#tooltipanimation").click(
+           function (event) { event.preventDefault(); vm.tooltipAnimation(!vm.tooltipAnimation()); }
+           );
+
+        $("#tooltiphtml").click(
+           function (event) { event.preventDefault(); vm.tooltipHtml(!vm.tooltipHtml()); }
+           );
+
+        $("#tooltiptoggletarget").toggle(
+           function () { vm.tooltipLink("tooltip2"); },
+           function () { vm.tooltipLink("tooltip1"); }
+           );
 
     </script>
 </html>
