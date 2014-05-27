@@ -1,68 +1,72 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Bootout - Knockout JS Bindings for Bootstrap</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.8.3.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/knockout-2.2.0.js"></script>
+    <script src="Scripts/knockout-3.1.0.js"></script>
     <script src="Scripts/bootout-src/bootout-alert.js"></script>
     <script src="Scripts/bootout-src/bootout-button.js"></script>
     <script src="Scripts/bootout-src/bootout-collapse.js"></script>
     <script src="Scripts/bootout-src/bootout-icons.js"></script>
     <script src="Scripts/bootout-src/bootout-modal.js"></script>
+    <script src="Scripts/bootout-src/bootout-dropdown.js"></script>
     <script src="Scripts/bootout-src/bootout-progressbar.js"></script>
     <script src="Scripts/bootout-src/bootout-tooltip.js"></script>
     <script src="Scripts/bootout-src/bootout-popover.js"></script>
 </head>
 <body>
-     <div id="koModal" data-bind="modalSetup: true, modalDisable: disableModal, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
-        <div class="modal-header">
-            <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
-            <h3 id="H1">KO Modal header</h3>
-        </div>
-        <div class="modal-body">
-            <p>KO body…</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" aria-hidden="true" data-bind="click: function() { showModal(false); }">Close</button>
-            <button class="btn btn-primary" data-bind="click: function() { showModal(false); }">Save changes</button>
+     <div id="koModal" data-bind="modalSetup: true, modalFade: fadeModal, modalShow: showModal, modalAriaLabelId: 'H1', modalOnShow: onShowModal, modalOnShown: onShownModal, modalOnHide: onHideModal, modalOnHidden: onHiddenModal, modalOptions: { keyboard: false }">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bind="click: function() { showModal(false); }">×</button>
+                    <h3 id="H1">KO Modal header</h3>
+                </div>
+                <div class="modal-body">
+                    <p>KO body…</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" aria-hidden="true" data-bind="click: function() { showModal(false); }">Close</button>
+                    <button class="btn btn-primary" data-bind="click: function() { showModal(false); }">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="container">
 
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Modal</h1>
-                <a href="#" id="disablemodal" role="button" class="btn">Disable/Enable modal</a>
-                <a href="#" id="fademodal" role="button" class="btn">Fade modal</a>
-                <a href="#" id="showmodal" role="button" class="btn">Show modal</a>
+                <a href="#" id="fademodal" role="button" class="btn btn-default">Fade modal</a>
+                <a href="#" id="showmodal" role="button" class="btn btn-default">Show modal</a>
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Icons</h1>
-                <a href="#" id="iconswap" role="button" class="btn">Icon swap</a>
+                <a href="#" id="iconswap" role="button" class="btn btn-default">Icon swap</a>
                 <i data-bind="bootstrapIcon: icon"></i>
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Alerts</h1>
                 <p>Note we do not use the standard bootstrap alert 'close' as it removes the element from the DOM. Instead we fade in and out via jQuery.</p>
                 <p>Also note that valid values for alertType are 'info', 'success', 'error' - any other value will default to a standard alert</p>
                 <p>
-                <a href="#" id="fadealert" role="button" class="btn">Fade alert</a>
-                <a href="#" id="showalert" role="button" class="btn">Show/Hide alert</a>
-                <a href="#" id="swapblock" role="button" class="btn">Block</a>
-                <a href="#" id="swapalert" role="button" class="btn">Type</a>
+                <a href="#" id="fadealert" role="button" class="btn btn-default">Fade alert</a>
+                <a href="#" id="showalert" role="button" class="btn btn-default">Show/Hide alert</a>
+                <a href="#" id="swapblock" role="button" class="btn btn-default">Block</a>
+                <a href="#" id="swapalert" role="button" class="btn btn-default">Type</a>
                 </p>
                 <div data-bind="alertSetup: true, alertOnClose: onCloseAlert, alertOnClosed: onClosedAlert, alertOnShow: onShowAlert, alertOnShown: onShownAlert, alertShow: showAlert, alertFade: fadeAlert, alertIsBlock: alertIsABlock, alertType:alertTypename">
                     <button type="button" class="close" data-bind="click: function() { showAlert(false); }">×</button>
@@ -71,16 +75,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Progress Bars</h1>
                 <p>
-                    <a href="#" id="progresspercentage" role="button" class="btn">Toggle Percentage</a>
-                    <a href="#" id="progresstype" role="button" class="btn">Type</a>
-                    <a href="#" id="progressstriped" role="button" class="btn">Striped</a>
-                    <a href="#" id="progressanimated" role="button" class="btn">Animated</a>
+                    <a href="#" id="progresspercentage" role="button" class="btn btn-default">Toggle Percentage</a>
+                    <a href="#" id="progresstype" role="button" class="btn btn-default">Type</a>
+                    <a href="#" id="progressstriped" role="button" class="btn btn-default">Striped</a>
+                    <a href="#" id="progressanimated" role="button" class="btn btn-default">Animated</a>
                 </p>
                 <div data-bind="progressBarContainerSetup: true, progressBarContainerIsStriped: progressBarIsStriped, progressBarContainerIsAnimated: progressBarIsAnimated, progressBarContainerType: progressBarType">
                     <div data-bind="progressBarSetup: true, progressBarWidth: progressBarWidth, progressBarType: progressBarType"></div>
@@ -88,17 +92,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Collapse</h1>
                 <p>Note the 'collapseIsOpen' binding and the 'collapseTarget/collapseAction' bindings should not be used together, rather one or the other, as the collapseTarget binding will not update the observable attached to the collapseIsOpen of the target element.</p>
                 <p>
-                    <a href="#" id="collapsetoggletarget" role="button" class="btn">Toggle Click Target</a>
-                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'show'" role="button" class="btn">Show</a>
-                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'hide'" role="button" class="btn">Hide</a>
-                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'toggle'" role="button" class="btn">Toggle</a>
+                    <a href="#" id="collapsetoggletarget" role="button" class="btn btn-default">Toggle Click Target</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'show'" role="button" class="btn btn-default">Show</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'hide'" role="button" class="btn btn-default">Hide</a>
+                    <a href="#" data-bind="collapseTarget: collapseDiv, collapseAction: 'toggle'" role="button" class="btn btn-default">Toggle</a>
                 </p>
                 
                 <h6><a href="#" id="collapse1header">Collapse 1</a></h6>
@@ -112,24 +116,24 @@
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Buttons</h1>
                 <p>
-                <a href="#" id="buttonsize" role="button" class="btn">Size</a>
-                <a href="#" id="buttontype" role="button" class="btn">Type</a>
-                <a href="#" id="buttontext" role="button" class="btn">Text</a>
-                <a href="#" id="buttonblock" role="button" class="btn">Block</a>
-                <a href="#" id="buttonselect" role="button" class="btn">Select/Unselect</a>
-                <a href="#" id="buttondisable" role="button" class="btn">Disable/Enable</a>
+                <a href="#" id="buttonsize" role="button" class="btn btn-default">Size</a>
+                <a href="#" id="buttontype" role="button" class="btn btn-default">Type</a>
+                <a href="#" id="buttontext" role="button" class="btn btn-default">Text</a>
+                <a href="#" id="buttonblock" role="button" class="btn btn-default">Block</a>
+                <a href="#" id="buttonselect" role="button" class="btn btn-default">Select/Unselect</a>
+                <a href="#" id="buttondisable" role="button" class="btn btn-default">Disable/Enable</a>
                 </p>
                 <a href="#" data-bind="buttonSetup: true, buttonText: btnText, buttonSize: btnSize, buttonType: btnType, buttonDisable: btnDisabled, buttonIsBlock: btnIsBlock, buttonIsSelected: btnIsSelected"></a> 
                 <hr />
                 <h3>Button Group</h3>
                 <p>
-                <a href="#" id="buttongroupvertical" role="button" class="btn">Vertical/Horizontal</a>
+                <a href="#" id="buttongroupvertical" role="button" class="btn btn-default">Vertical/Horizontal</a>
                 </p>
                 <div data-bind="buttonGroupSetup: true, buttonGroupIsRadio: true, buttonGroupIsVertical: btnGroupIsVertical">
                     <a href="#" id="btn1" data-bind="buttonSetup: true, buttonText: 'Button 1', buttonType: 'info', buttonIsSelected: btn1IsSelected"></a> 
@@ -139,48 +143,49 @@
             </div>
         </div>
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Tooltips</h1>
                 <p>Note all standard tooltip options can be set in the 'tooltipOptions' binding with the exception of the 'selector' and 'title' options as they do not apply to the case of stateful tooltip control via Knockout bindings.</p>
                 <p>
-                <a href="#" id="tooltipplacement" role="button" class="btn">Placement</a>
-                <a href="#" id="tooltiptrigger" role="button" class="btn">Trigger</a>
-                <a href="#" id="tooltipdelay" role="button" class="btn">Delay</a>
-                <a href="#" id="tooltiptitle" role="button" class="btn">Title</a>
-                <a href="#" id="tooltipanimation" role="button" class="btn">Animation</a>
-                <a href="#" id="tooltiphtml" role="button" class="btn">HTML</a>
+                <a href="#" id="tooltipplacement" role="button" class="btn btn-default">Placement</a>
+                <a href="#" id="tooltiptrigger" role="button" class="btn btn-default">Trigger</a>
+                <a href="#" id="tooltipdelay" role="button" class="btn btn-default">Delay</a>
+                <a href="#" id="tooltiptitle" role="button" class="btn btn-default">Title</a>
+                <a href="#" id="tooltipanimation" role="button" class="btn btn-default">Animation</a>
+                <a href="#" id="tooltiphtml" role="button" class="btn btn-default">HTML</a>
                 </p>
                 This is a <a href="#" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: tooltipTrigger, delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a> example.
                 <hr />
+                <div class="pull-right">
+                This is a <a href="#" id="tooltip1" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>. This is another <a href="#" id="tooltip2" data-bind="    tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>.
+                </div>
                 <p>
                     <a href="#" id="tooltiptoggletarget" role="button" class="btn">Toggle Click Target</a>
-                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'show'" role="button" class="btn">Show</a>
-                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'hide'" role="button" class="btn">Hide</a>
-                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'toggle'" role="button" class="btn">Toggle</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'show'" role="button" class="btn btn-default">Show</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'hide'" role="button" class="btn btn-default">Hide</a>
+                    <a href="#" data-bind="tooltipTarget: tooltipLink, tooltipAction: 'toggle'" role="button" class="btn btn-default">Toggle</a>
                 </p>
-                <p>&nbsp;</p>
-                This is a <a href="#" id="tooltip1" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>. This is another <a href="#" id="tooltip2" data-bind="tooltipSetup: true, tooltipOptions: { placement: tooltipPlacement, trigger: 'manual', delay: { show: tooltipDelayShow, hide: tooltipDelayHide }, animation: tooltipAnimation, html: tooltipHtml }, tooltipTitle: tooltipTitle" onclick="return false;">tooltip</a>.
             </div>
         </div>
 
         <div class="row">
-            <div class="span12">&nbsp;</div>
+            <div class="col-md-12">&nbsp;</div>
         </div>
         <div class="row">
-            <div class="span12">
+            <div class="col-md-12">
                 <h1>Popovers</h1>
                 <p>Note all standard popover options can be set in the 'popoverOptions' binding with the exception of the 'selector', 'title', and 'content' options as they do not apply to the case of stateful popover control via Knockout bindings.</p>
                 <p>
-                <a href="#" id="popoverplacement" role="button" class="btn">Placement</a>
-                <a href="#" id="popovertrigger" role="button" class="btn">Trigger</a>
-                <a href="#" id="popoverdelay" role="button" class="btn">Delay</a>
-                <a href="#" id="popovertitle" role="button" class="btn">Title</a>
-                <a href="#" id="popovercontent" role="button" class="btn">Content</a>
-                <a href="#" id="popoveranimation" role="button" class="btn">Animation</a>
-                <a href="#" id="popoverhtml" role="button" class="btn">HTML</a>
+                <a href="#" id="popoverplacement" role="button" class="btn btn-default">Placement</a>
+                <a href="#" id="popovertrigger" role="button" class="btn btn-default">Trigger</a>
+                <a href="#" id="popoverdelay" role="button" class="btn btn-default">Delay</a>
+                <a href="#" id="popovertitle" role="button" class="btn btn-default">Title</a>
+                <a href="#" id="popovercontent" role="button" class="btn btn-default">Content</a>
+                <a href="#" id="popoveranimation" role="button" class="btn btn-default">Animation</a>
+                <a href="#" id="popoverhtml" role="button" class="btn btn-default">HTML</a>
                 </p>
                 This is a <a href="#" data-bind="popoverSetup: true, popoverOptions: { placement: popoverPlacement, trigger: popoverTrigger, delay: { show: popoverDelayShow, hide: popoverDelayHide }, animation: popoverAnimation, html: popoverHtml }, popoverTitle: popoverTitle, popoverContent: popoverContent" onclick="return false;">popover</a> example.
                 <hr />
@@ -189,10 +194,48 @@
                 </div>
                 <p>
                     <a href="#" id="popovertoggletarget" role="button" class="btn">Toggle Click Target</a>
-                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'show'" role="button" class="btn">Show</a>
-                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'hide'" role="button" class="btn">Hide</a>
-                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'toggle'" role="button" class="btn">Toggle</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'show'" role="button" class="btn btn-default">Show</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'hide'" role="button" class="btn btn-default">Hide</a>
+                    <a href="#" data-bind="popoverTarget: popoverLink, popoverAction: 'toggle'" role="button" class="btn btn-default">Toggle</a>
                 </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Dropdowns</h1>
+                <p>
+                    <a href="#" id="dropdowntoggletarget" role="button" class="btn">Toggle Click Target</a>
+                    <a href="#" data-bind="dropdownTarget: 'dropdown1', dropdownAction: 'show'" role="button" class="btn btn-default">Show</a>
+                    <a href="#" data-bind="dropdownTarget: 'dropdown1', dropdownAction: 'hide'" role="button" class="btn btn-default">Hide</a>
+                    <a href="#" data-bind="dropdownTarget: 'dropdown1', dropdownAction: 'toggle'" role="button" class="btn btn-default">Toggle</a>
+                </p>
+
+                <div data-bind="dropdownSetup: true" id="dropdown1">
+
+                    <ul data-bind="dropdownMenuSetup: true, dropdownIsOpen: dropdown1IsOpen">
+                        <li><a tabindex="-1" href="#">Action</a></li>
+                        <li><a tabindex="-1" href="#">Another action</a></li>
+                        <li><a tabindex="-1" href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Dropdown #1</a></li>
+                    </ul>
+                </div>
+
+                <div data-bind="dropdownSetup: true" id="dropdown2" >
+
+
+                    <ul data-bind="dropdownMenuSetup: true, dropdownIsOpen: dropdown2IsOpen">
+                        <li><a tabindex="-1" href="#">Action</a></li>
+                        <li><a tabindex="-1" href="#">Another action</a></li>
+                        <li><a tabindex="-1" href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Dropdown #2</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -202,8 +245,36 @@
 </body>
     <script>
 
+        // grabbed previously deprecated toggle method from jQuery Migrate
+        jQuery.fn.toggle = function( fn, fn2 ) {
+          // Don't mess with animation or css toggles
+          if ( !jQuery.isFunction( fn ) || !jQuery.isFunction( fn2 ) ) {
+            return oldToggle.apply( this, arguments );
+          }
+          // migrateWarn("jQuery.fn.toggle(handler, handler...) is deprecated");
+          // Save reference to arguments for access in closure
+          var args = arguments,
+          guid = fn.guid || jQuery.guid++,
+          i = 0,
+          toggler = function( event ) {
+            // Figure out which function to execute
+            var lastToggle = ( jQuery._data( this, "lastToggle" + fn.guid ) || 0 ) % i;
+            jQuery._data( this, "lastToggle" + fn.guid, lastToggle + 1 );
+            // Make sure that clicks stop
+            event.preventDefault();
+            // and execute the function
+            return args[ lastToggle ].apply( this, arguments ) || false;
+          };
+          // link all the functions, so any of them can unbind this click handler
+          toggler.guid = guid;
+          while ( i < args.length ) {
+            args[ i++ ].guid = guid;
+          }
+          return this.click( toggler );
+        };
+
         var vm = {
-            disableModal: ko.observable(false),
+            modalSize: ko.observable(""),
             fadeModal: ko.observable(true),
             showModal: ko.observable(false),
             icon: ko.observable("ok"),
@@ -219,7 +290,7 @@
             collapse1IsOpen: ko.observable(true),
             collapse2IsOpen: ko.observable(true),
             btnText: ko.observable("Button"),
-            btnSize: ko.observable("default"),
+            btnSize: ko.observable(""),
             btnType: ko.observable("primary"),
             btnIsBlock: ko.observable(false),
             btnIsSelected: ko.observable(false),
@@ -246,7 +317,10 @@
             popoverAnimation: ko.observable(true),
             popoverHtml: ko.observable(true),
             popoverIsOpen: ko.observable(false),
-            popoverLink: ko.observable("popover1")
+            popoverLink: ko.observable("popover1"),
+            dropdown1IsOpen: ko.observable(false),
+            dropdown2IsOpen: ko.observable(false),
+            dropdownDiv: ko.observable("dropdown1"),
         };
 
         vm.onShowModal = function () {
@@ -298,10 +372,6 @@
         };
 
         ko.applyBindings(vm);
-
-        $("#disablemodal").click(
-            function (event) { event.preventDefault(); vm.disableModal(!vm.disableModal()); }
-            );
 
         $("#fademodal").click(
            function (event) { event.preventDefault(); vm.fadeModal(!vm.fadeModal()); }
@@ -367,8 +437,8 @@
            );
 
         $("#buttonsize").toggle(
-           function () { vm.btnSize("large"); },
-           function () { vm.btnSize("default"); }
+           function () { vm.btnSize("lg"); },
+           function () { vm.btnSize(""); }
            );
 
         $("#buttontype").toggle(
@@ -478,6 +548,11 @@
         $("#popovertoggletarget").toggle(
            function () { vm.popoverLink("popover2"); },
            function () { vm.popoverLink("popover1"); }
+           );
+
+        $("#dropdowntoggletarget").toggle(
+           function () { vm.dropdownDiv("dropdown2"); },
+           function () { vm.dropdownDiv("dropdown1"); }
            );
 
     </script>

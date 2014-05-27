@@ -1,4 +1,4 @@
-﻿/*!
+/*!
 * Bootout.js by Anthony P. Alicea
 * http://www.anthonypalicea.com/projects/bootout
 *
@@ -37,7 +37,7 @@ ko.bindingHandlers.modalSetup = {
             }
 
             // modal css classes
-            $(element).addClass("modal").addClass("hide").modal(options);
+            $(element).addClass("modal").modal(options);
 
             // manually handle backdrop click, so that it updates observable bound to 'modalShow'
             if (backdropIsSetToDefault) {
@@ -77,42 +77,6 @@ ko.bindingHandlers.modalFade = {
         }
         else {
             $(element).removeClass("fade");
-        }
-    }
-}
-
-/* modalDisable - should modal be allowed to be activated */
-ko.bindingHandlers.modalDisable = {
-
-    init: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).on('show', function (e) {
-                return e.preventDefault();
-            });
-        }
-        else {
-            $(element).off('show');
-            $(element).on('show', allBindings.modalOnShow);
-        }
-    },
-
-    update: function (element, valueAccessor, allBindingsAccessor) {
-
-        var value = valueAccessor(), allBindings = allBindingsAccessor();
-        var valueUnwrapped = ko.utils.unwrapObservable(value);
-
-        if (valueUnwrapped === true) {
-            $(element).on('show', function (e) {
-                return e.preventDefault();
-            });
-        }
-        else {
-            $(element).off('show');
-            $(element).on('show', allBindings.modalOnShow);
         }
     }
 }

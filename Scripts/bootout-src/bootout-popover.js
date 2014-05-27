@@ -114,11 +114,9 @@ ko.bindingHandlers.popoverAction = {
                     switch (valueUnwrapped) {
                         case "show":
                             $(targetDivIdSelector).popover('show');
-                            allBindings.collapseIsOpen(true);
                             break;
                         case "hide":
                             $(targetDivIdSelector).popover('hide');
-                            allBindings.collapseIsOpen(false);
                             break;
                         case "toggle":
                             $(targetDivIdSelector).popover('toggle');

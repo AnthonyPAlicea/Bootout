@@ -88,11 +88,9 @@ ko.bindingHandlers.tooltipAction = {
                     switch (valueUnwrapped) {
                         case "show":
                             $(targetDivIdSelector).tooltip('show');
-                            allBindings.collapseIsOpen(true);
                             break;
                         case "hide":
                             $(targetDivIdSelector).tooltip('hide');
-                            allBindings.collapseIsOpen(false);
                             break;
                         case "toggle":
                             $(targetDivIdSelector).tooltip('toggle');

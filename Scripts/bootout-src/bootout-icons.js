@@ -1,4 +1,4 @@
-﻿/*!
+/*!
 * Bootout.js by Anthony P. Alicea
 * http://www.anthonypalicea.com/projects/bootout
 *
@@ -23,7 +23,7 @@ ko.bindingHandlers.bootstrapIcon = {
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
         if (valueUnwrapped != "" && valueUnwrapped) {
-            $(element).addClass("icon-" + valueUnwrapped);
+            $(element).addClass("glyphicon").addClass("glyphicon-" + valueUnwrapped);
         }
     },
 
@@ -32,14 +32,14 @@ ko.bindingHandlers.bootstrapIcon = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        // remove all existing icon- classes
+        // remove all existing glyphicon- classes
         $(element).removeClass(function (index, css) {
-            return (css.match(/\bicon-\S+/g) || []).join(' ');
+            return (css.match(/\bglyphicon-\S+/g) || []).join(' ');
         });
 
         // add the bound icon class
         if (valueUnwrapped != "" && valueUnwrapped) {
-            $(element).addClass("icon-" + valueUnwrapped);
+            $(element).addClass("glyphicon-" + valueUnwrapped);
         }
     }
 }

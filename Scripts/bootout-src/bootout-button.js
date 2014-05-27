@@ -1,4 +1,4 @@
-﻿/*!
+/*!
 * Bootout.js by Anthony P. Alicea
 * http://www.anthonypalicea.com/projects/bootout
 *
@@ -24,7 +24,7 @@ ko.bindingHandlers.buttonSetup = {
         if (valueUnwrapped === true) {
 
             // alert css classes and attributes
-            $(element).addClass("btn").alert();
+            $(element).addClass("btn btn-default").alert();
 
         }
     }
@@ -33,8 +33,8 @@ ko.bindingHandlers.buttonSetup = {
 /* buttonType - adds 'btn-' class for the string value assigned
 * note both a value of "" and null will remove ALL btn- classes from the element
 * with the exception of the 'btn-block' class and button size classes */
-var validButtonTypes = ["default", "primary", "info", "success", "warning", "danger", "inverse", "link"];
-var validButtonSizes = ["default", "large", "small", "mini"];
+var validButtonTypes = ["default", "primary", "info", "success", "warning", "danger", "link"];
+var validButtonSizes = ["lg", "sm", "xs"];
 
 ko.bindingHandlers.buttonType = {
 
@@ -43,8 +43,8 @@ ko.bindingHandlers.buttonType = {
         var value = valueAccessor(), allBindings = allBindingsAccessor();
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
-        if ($.inArray(valueUnwrapped, validButtonTypes) > -1) {
-            if (valueUnwrapped != "" && valueUnwrapped) {
+        if (valueUnwrapped !== '' && $.inArray(valueUnwrapped, validButtonTypes) > -1) {
+            if (valueUnwrapped) {
                 $(element).addClass("btn-" + valueUnwrapped);
             }
         }
@@ -64,7 +64,7 @@ ko.bindingHandlers.buttonType = {
 
         if (buttonIsBlock) { $(element).addClass("btn-block"); }
 
-        if (buttonSize === "" || $.inArray(buttonSize, validButtonSizes)) {
+        if (buttonSize !== "" && $.inArray(buttonSize, validButtonSizes) > -1) {
             $(element).addClass("btn-" + buttonSize);
         }
 

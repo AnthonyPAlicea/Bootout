@@ -148,10 +148,10 @@ ko.bindingHandlers.progressBarSetup = {
         var valueUnwrapped = ko.utils.unwrapObservable(value);
 
         if (valueUnwrapped === true) {
-            $(element).addClass("bar");
+            $(element).addClass("progress-bar");
         }
         else {
-            $(element).removeClass("bar");
+            $(element).removeClass("progress-bar");
         }
     }
 }
@@ -167,7 +167,7 @@ ko.bindingHandlers.progressBarType = {
 
         if ($.inArray(valueUnwrapped, validProgressBarTypes) > -1) {
             if (valueUnwrapped != "" && valueUnwrapped) {
-                $(element).addClass("bar-" + valueUnwrapped);
+                $(element).addClass("progress-bar-" + valueUnwrapped);
             }
         }
     },
@@ -179,13 +179,13 @@ ko.bindingHandlers.progressBarType = {
 
         // remove all existing alert- classes
         $(element).removeClass(function (index, css) {
-            return (css.match(/\bbar-\S+/g) || []).join(' ');
+            return (css.match(/\bprogress-bar-\S+/g) || []).join(' ');
         });
 
         // add the bound progress bar type
         if ($.inArray(valueUnwrapped, validProgressBarTypes) > -1) {
             if (valueUnwrapped != "" && valueUnwrapped) {
-                $(element).addClass("bar-" + valueUnwrapped);
+                $(element).addClass("progress-bar-" + valueUnwrapped);
             }
         }
     }
